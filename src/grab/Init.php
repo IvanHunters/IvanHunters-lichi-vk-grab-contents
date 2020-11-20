@@ -32,13 +32,20 @@ class Init implements \Lichi\Grab\Init
 
         $postsInfo = $this->provider->wall->get($ownerId, $count, $offset);
         foreach ($postsInfo['items'] as $postInfo) {
-            $post[] = new Post($postInfo);
+            $postObject = new Post($postInfo);
+            if (Validator::checkPost($postObject)) {
+                $post[] = $postObject;
+            }else{
+                $a = 10;
+            }
         }
         return $post;
     }
 
     /**
-     * @var int $ownerId
+     *
+     * @param int $ownerId
+     * @param int $count
      * @return int
      */
     private function getStartPost(int $ownerId, int $count): int
