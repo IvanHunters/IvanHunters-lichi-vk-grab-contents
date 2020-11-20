@@ -31,7 +31,10 @@ class Post implements \Lichi\Grab\Post
         foreach ($attachments as $attachment) {
             switch ($attachment['type']) {
                 case 'photo':
-                    $this->images[] = $this->parsePhoto($attachment['photo']);
+                    $photos = $this->parsePhoto($attachment['photo']);
+                    $this->images['maxSizeImageUrl'][] = $photos['maxSizeImageUrl'];
+                    $this->images['mediumSizeImageUrl'][] = $photos['mediumSizeImageUrl'];
+                    $this->images['smallSizeImageUrl'][] = $photos['smallSizeImageUrl'];
                     break;
                 case 'audio':
                     $this->audios[] = $this->parseAudio($attachments['audio']);
