@@ -1,9 +1,9 @@
 {
-  "name": "lichi/vk-sdk",
+  "name": "lichi/vk-grab-contents",
   "type": "library",
-  "description": "Core for lichi Framework",
+  "description": "Grab contents From Vk",
   "keywords": ["Lichi","lichi"],
-  "homepage": "https://github.com/IvanHunters/lichi-vk-sdk",
+  "homepage": "https://github.com/IvanHunters/lichi-vk-grab-contents",
   "license": "MIT",
   "authors": [
     {
@@ -15,12 +15,13 @@
   "prefer-stable": true,
   "require": {
     "ext-curl": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "lichi/vk-sdk": "9999999-dev"
   },
   "autoload": {
     "psr-4": {
-      "Lichi\\Vk\\": "src/",
-      "Lichi\\Vk\\Sdk\\": "src/sdk"
+      "Lichi\\Grab\\": "src/",
+      "Lichi\\Grab\\Post\\": "src/grab"
     }
   },
   "require-dev": {

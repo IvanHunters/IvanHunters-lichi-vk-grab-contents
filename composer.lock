@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0517e1f036697c8c365852b91e21b19f",
-    "packages": [],
+    "content-hash": "e547b6b35b254e3e60dbdda5b768fd51",
+    "packages": [
+        {
+            "name": "lichi/vk-sdk",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IvanHunters/lichi-vk-sdk.git",
+                "reference": "6ef07cd7a6a034c7bc092d0df70a82811461d9fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IvanHunters/lichi-vk-sdk/zipball/6ef07cd7a6a034c7bc092d0df70a82811461d9fd",
+                "reference": "6ef07cd7a6a034c7bc092d0df70a82811461d9fd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3",
+                "squizlabs/php_codesniffer": "^3.5",
+                "vimeo/psalm": "^4.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lichi\\Vk\\": "src/",
+                    "Lichi\\Vk\\Sdk\\": "src/sdk"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Okhotnikov",
+                    "email": "ohotnikovivan@yandex.ru"
+                }
+            ],
+            "description": "Core for lichi Framework",
+            "homepage": "https://github.com/IvanHunters/lichi-vk-sdk",
+            "keywords": [
+                "lichi"
+            ],
+            "support": {
+                "issues": "https://github.com/IvanHunters/lichi-vk-sdk/issues",
+                "source": "https://github.com/IvanHunters/lichi-vk-sdk/tree/main"
+            },
+            "time": "2020-11-20T18:00:42+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "amphp/amp",
@@ -3480,16 +3533,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "4.1.1",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "16bfbd9224698bd738c665f33039fade2a1a3977"
+                "reference": "ea9cb72143b77e7520c52fa37290bd8d8bc88fd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/16bfbd9224698bd738c665f33039fade2a1a3977",
-                "reference": "16bfbd9224698bd738c665f33039fade2a1a3977",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/ea9cb72143b77e7520c52fa37290bd8d8bc88fd9",
+                "reference": "ea9cb72143b77e7520c52fa37290bd8d8bc88fd9",
                 "shasum": ""
             },
             "require": {
@@ -3579,9 +3632,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vimeo/psalm/issues",
-                "source": "https://github.com/vimeo/psalm/tree/4.1.1"
+                "source": "https://github.com/vimeo/psalm/tree/4.2.1"
             },
-            "time": "2020-11-02T05:54:12+00:00"
+            "time": "2020-11-20T14:56:53+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -3689,10 +3742,15 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "lichi/vk-sdk": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
 }

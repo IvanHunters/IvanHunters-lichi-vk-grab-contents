@@ -1,18 +1,18 @@
-# lichi-vk-sdk
+# lichi-vk-grab-contents
 **For install:**
 ```
-composer require lichi/vk-sdk
+composer require lichi/vk-grab-contents
 ```
 
-**Simple work with sdk**
+**Simple work with grabbing system**
 
 ```
 include "vendor/autoload.php";
 
+use Lichi\Grab\Post\Init;
 use Lichi\Vk\Sdk\ApiProvider;
 
-$apiProvider = new ApiProvider("VK_TOKEN");
-$apiProvider->documents->downloadFromUrl("URL_DOCUMENTS", "file.jpg");
-$attachment = $apiProvider->documents->upload("file.jpg", USER_ID);
-$message_id = $apiProvider->messages->send(USER_ID, "Text Message", ['attachment'=>$attachment]);
+$apiProvider = new ApiProvider(TOKEN);
+$grabber = new Init($apiProvider);
+$postsAfterGrabbing = $grabber->getPostsFor(OWNER_ID, COUNT);
 ```
