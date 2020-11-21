@@ -67,16 +67,27 @@ class Init implements \Lichi\Grab\Init
                 $calcCountForOffset -= $count;
             }
 
-            $configArray[$ownerId] = $calcCountForOffset;
+            $configArray[$ownerId]['offset'] = $calcCountForOffset;
+            $configArray[$ownerId]['start_offset'] = $countPost;
         }else{
-            $configArray[$ownerId]-=$count;
+            $countPost = $this->provider->wall->getCountPostsFor($ownerId);
+            if($countPost != $configArray[$ownerId]['start_offset'])
+            {
+                $startOffset = $configArray[$ownerId]['start_offset'];
+                $diffOffset = $countPost - $startOffset;
+                $sumOldOffsetAndDiff = $configArray[$ownerId]['offset'] + $diffOffset;
+                $configArray[$ownerId]['offset'] = ($configArray[$ownerId]['offset'] + $diffOffset)  - $count;
+                $configArray[$ownerId]['start_offset'] = $countPost;
+            }else{
+                $configArray[$ownerId]['offset'] -= $count;
+            }
         }
-        if($configArray[$ownerId] < 0)
+        if($configArray[$ownerId]['offset'] < 0)
             throw new RuntimeException("Group [{$ownerId}] was cleaner");
         if($configArray) {
             file_put_contents("checkingData.json", json_encode($configArray));
         }
 
-        return $configArray[$ownerId];
+        return $configArray[$ownerId]['offset'];
     }
 }
