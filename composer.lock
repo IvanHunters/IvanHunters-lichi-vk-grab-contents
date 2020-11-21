@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e907e90463d0f8dffe58c71a65d961c4",
+    "content-hash": "af3ac6fa1965fe49e1522dc3598e71d1",
     "packages": [
         {
             "name": "lichi/vk-sdk",
-            "version": "1.0.1",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/IvanHunters/lichi-vk-sdk.git",
@@ -29,6 +29,7 @@
                 "squizlabs/php_codesniffer": "^3.5",
                 "vimeo/psalm": "^4.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -3743,7 +3744,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "lichi/vk-sdk": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
