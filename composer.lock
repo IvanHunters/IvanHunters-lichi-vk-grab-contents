@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b69472b6328b6bd7b48776c060cea74",
+    "content-hash": "e907e90463d0f8dffe58c71a65d961c4",
     "packages": [
         {
             "name": "lichi/vk-sdk",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/IvanHunters/lichi-vk-sdk.git",
-                "reference": "113294f8f8d65a3a4479a7cca78ea36b87cfd2fa"
+                "reference": "fcc6a919220b243cdc16d6970266857e63faace3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/IvanHunters/lichi-vk-sdk/zipball/113294f8f8d65a3a4479a7cca78ea36b87cfd2fa",
-                "reference": "113294f8f8d65a3a4479a7cca78ea36b87cfd2fa",
+                "url": "https://api.github.com/repos/IvanHunters/lichi-vk-sdk/zipball/fcc6a919220b243cdc16d6970266857e63faace3",
+                "reference": "fcc6a919220b243cdc16d6970266857e63faace3",
                 "shasum": ""
             },
             "require": {
@@ -55,9 +55,9 @@
             ],
             "support": {
                 "issues": "https://github.com/IvanHunters/lichi-vk-sdk/issues",
-                "source": "https://github.com/IvanHunters/lichi-vk-sdk/tree/1.0.0"
+                "source": "https://github.com/IvanHunters/lichi-vk-sdk/tree/1.0.1"
             },
-            "time": "2020-11-21T14:10:15+00:00"
+            "time": "2020-11-21T15:04:24+00:00"
         }
     ],
     "packages-dev": [
