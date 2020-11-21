@@ -5,6 +5,7 @@ namespace Lichi\Grab\Post;
 
 
 use Lichi\Vk\Sdk\ApiProvider;
+use RuntimeException;
 
 class Init implements \Lichi\Grab\Init
 {
@@ -35,8 +36,6 @@ class Init implements \Lichi\Grab\Init
             $postObject = new Post($postInfo);
             if (Validator::checkPost($postObject)) {
                 $post[] = $postObject;
-            }else{
-                $a = 10;
             }
         }
         return $post;
@@ -59,11 +58,15 @@ class Init implements \Lichi\Grab\Init
         if (!isset($configArray[$ownerId]))
         {
             $countPost = $this->provider->wall->getCountPostsFor($ownerId);
-            $configArray[$ownerId] = $countPost - ((int) ($countPost / 3) * 2) - $count;
+            $configArray[$ownerId] = $countPost - (int) (($countPost / 3) /3) - $count;
         }else{
             $configArray[$ownerId]-=$count;
         }
-        file_put_contents("checkingData.json", json_encode($configArray));
+        if($configArray[$ownerId] < 0)
+            throw new RuntimeException("Group [{$ownerId}] was cleaner");
+        if($configArray) {
+            file_put_contents("checkingData.json", json_encode($configArray));
+        }
 
         return $configArray[$ownerId];
     }
