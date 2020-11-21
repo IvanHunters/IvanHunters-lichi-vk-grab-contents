@@ -38,13 +38,17 @@ class Post implements \Lichi\Grab\Post
                     $this->images['smallSizeImageUrl'][] = $photos['smallSizeImageUrl'];
                     break;
                 case 'audio':
-                    $this->audios[] = $this->parseAudio($attachments['audio']);
+                    if (isset($attachments['audio']) && is_array($attachments['audio'])) {
+                        $this->audios[] = $this->parseAudio($attachments['audio']);
+                    }
                     break;
                 case 'video':
-                    $attachmentVideo = $this->parseVideo($attachments['video']);
-                    if ($attachmentVideo != "")
-                    {
-                        $this->videos[] = $attachmentVideo;
+                    if (isset($attachments['video']) && is_array($attachments['video'])) {
+                        $attachmentVideo = $this->parseVideo($attachments['video']);
+                        if ($attachmentVideo != "")
+                        {
+                            $this->videos[] = $attachmentVideo;
+                        }
                     }
                     break;
             }
