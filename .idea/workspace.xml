@@ -12,8 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2a942519-c344-4312-8b2d-f6ddd9ababcb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/checkingData.json" beforeDir="false" afterPath="$PROJECT_DIR$/checkingData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +78,7 @@
       <updated>1605597187937</updated>
       <workItem from="1605597189471" duration="2907000" />
       <workItem from="1605622437146" duration="10435000" />
-      <workItem from="1605887534527" duration="19048000" />
+      <workItem from="1605887534527" duration="19081000" />
     </task>
     <servers />
   </component>
