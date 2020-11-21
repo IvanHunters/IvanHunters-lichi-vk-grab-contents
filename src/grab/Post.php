@@ -15,8 +15,14 @@ class Post implements \Lichi\Grab\Post
     public array $images = [];
     public array $videos = [];
     public array $audios = [];
+    public bool $markedAsAds;
+    public int $comments;
+    public int $reposts;
 
     public function __construct(array $postInfo){
+        $this->markedAsAds = (bool) $postInfo['marked_as_ads'];
+        $this->comments = isset($postInfo['comments'])? $postInfo['comments']['count']: 0;
+        $this->reposts = isset($postInfo['reposts'])? $postInfo['reposts']['count']: 0;
         $this->unixTime = $postInfo['date'];
         $this->textPost = $postInfo['text'];
         $this->ownerId = $postInfo['from_id'];
