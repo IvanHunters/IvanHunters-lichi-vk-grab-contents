@@ -21,8 +21,8 @@ class Post implements \Lichi\Grab\Post
         $this->textPost = $postInfo['text'];
         $this->ownerId = $postInfo['from_id'];
         $this->postId = $postInfo['id'];
-        $this->likes = $postInfo['likes']['count'];
-        $this->views = $postInfo['views']['count'];
+        $this->likes = isset($postInfo['likes'])? $postInfo['likes']['count']: 0;
+        $this->views = isset($postInfo['views'])? $postInfo['views']['count'] : 0;
         if (isset($postInfo['attachments'])) {
             $this->parseAttachments($postInfo['attachments']);
         }
