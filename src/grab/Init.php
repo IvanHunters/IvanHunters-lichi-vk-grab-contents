@@ -59,7 +59,7 @@ class Init implements \Lichi\Grab\Init
         if (!isset($configArray[$ownerId]))
         {
             $countPost = $this->provider->wall->getCountPostsFor($ownerId);
-            $configArray[$ownerId] = $countPost - (int) ($countPost / 3) - $count;
+            $configArray[$ownerId] = $countPost - ((int) ($countPost / 3) * 2) - $count;
         }else{
             $configArray[$ownerId]-=$count;
         }
