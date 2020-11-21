@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8914c93b9bd7b4d6eaf22335a216f0fc",
+    "content-hash": "6d4838cce8c356c5e084067429e36593",
     "packages": [
         {
             "name": "lichi/vk-sdk",
