@@ -16,7 +16,7 @@
   "require": {
     "ext-curl": "*",
     "ext-json": "*",
-    "lichi/vk-sdk": "dev-main"
+    "lichi/vk-sdk": "1.0.1"
   },
   "autoload": {
     "psr-4": {
