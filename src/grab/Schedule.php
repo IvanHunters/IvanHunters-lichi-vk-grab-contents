@@ -14,6 +14,15 @@ class Schedule implements \Lichi\Grab\Schedule
      */
     public function __construct(array $schedule)
     {
+        $countOfSchedule = count($schedule);
+        if($countOfSchedule == 0)
+        {
+            throw new RuntimeException("Schedule is empty");
+        }
+        if($countOfSchedule > 25)
+        {
+            throw new RuntimeException("Too more elements in schedule");
+        }
         $this->schedule = $schedule;
     }
 
