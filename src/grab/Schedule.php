@@ -6,8 +6,9 @@ use RuntimeException;
 
 class Schedule implements \Lichi\Grab\Schedule
 {
-    private array $schedule;
+    private array $schedules;
     private int $lastTime;
+    public int $optimalIndexScheduleOffset;
 
     /**
      * Schedule constructor.
@@ -25,11 +26,36 @@ class Schedule implements \Lichi\Grab\Schedule
         {
             throw new RuntimeException("Too more elements in schedule");
         }
-        $this->schedule = $schedule;
+        $this->sortTime($schedule);
+        $this->schedules = $schedule;
         if(!$lastTime){
             $lastTime = time();
         }
         $this->lastTime = $lastTime;
+        $this->optimalIndexScheduleOffset = $this->getOptimalIndexScheduleOffset();
+    }
+
+
+    private function sortTime(&$schedule): void
+    {
+        $sortDate = [];
+        foreach ($schedule as $scheduleInfo){
+            $sortDate[$scheduleInfo] = strtotime($scheduleInfo);
+        }
+        asort($sortDate);
+        $sortDate = array_unique($sortDate);
+        $schedule = array_keys($sortDate);
+    }
+
+    private function getOptimalIndexScheduleOffset(): int
+    {
+        date_default_timezone_set("Europe/Volgograd");
+        foreach ($this->schedules as $id=>$schedule){
+            $unixTime = $this->getUnixFor(0, $id);
+            if(time() < $unixTime)
+                return $id;
+        }
+        return -1;
     }
 
     /**
@@ -40,11 +66,11 @@ class Schedule implements \Lichi\Grab\Schedule
     public function getUnixFor($dayOffset, $scheduleOffset): int
     {
         date_default_timezone_set("Europe/Volgograd");
-        if($scheduleOffset > count($this->schedule) - 1)
+        if($scheduleOffset > count($this->schedules) - 1)
         {
             throw new RuntimeException("Offset schedule not found");
         }
 
-        return strtotime("+{$dayOffset} day " . $this->schedule[$scheduleOffset] . ":00", $this->lastTime);
+        return strtotime("+{$dayOffset} day " . $this->schedules[$scheduleOffset] . ":00", $this->lastTime);
     }
 }
