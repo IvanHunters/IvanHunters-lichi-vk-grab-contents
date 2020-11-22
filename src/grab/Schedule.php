@@ -7,12 +7,14 @@ use RuntimeException;
 class Schedule implements \Lichi\Grab\Schedule
 {
     private array $schedule;
+    private int $lastTime;
 
     /**
      * Schedule constructor.
+     * @param int $lastTime
      * @param array $schedule
      */
-    public function __construct(array $schedule)
+    public function __construct(array $schedule, int $lastTime = 0)
     {
         $countOfSchedule = count($schedule);
         if($countOfSchedule == 0)
@@ -24,6 +26,10 @@ class Schedule implements \Lichi\Grab\Schedule
             throw new RuntimeException("Too more elements in schedule");
         }
         $this->schedule = $schedule;
+        if(!$lastTime){
+            $lastTime = time();
+        }
+        $this->lastTime = $lastTime;
     }
 
     /**
@@ -39,6 +45,6 @@ class Schedule implements \Lichi\Grab\Schedule
             throw new RuntimeException("Offset schedule not found");
         }
 
-        return strtotime("+{$dayOffset} day " . $this->schedule[$scheduleOffset] . ":00", time());
+        return strtotime("+{$dayOffset} day " . $this->schedule[$scheduleOffset] . ":00", $this->lastTime);
     }
 }
