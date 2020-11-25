@@ -37,7 +37,7 @@ class SimpleViewer
         $this->selectGroup = isset($_GET['select'])? $_GET['select'] : die('Укажите Select');
         $groupInfo = $this->getInfoForGroup();
         $this->checkReset();
-        $this->getSourceForGroup($groupInfo, true);
+        $this->getSourceForGroup($groupInfo);
         if(isset($_GET['act']))
         {
             $this->actionsHandler($_GET['act']);
@@ -68,7 +68,7 @@ class SimpleViewer
         /** @var int $groupId **/
         $groupId = $groupInfo['group_id'];
 
-        return $this->db->select("groups_content_list", ['for_group'=>$groupId]);
+        return $this->db->select("groups_content_list", ['for_group'=>$groupId], true);
     }
 
     private function getSourceForGroup(array $groupInfoFromDb): void

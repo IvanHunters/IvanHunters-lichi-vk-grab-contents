@@ -21,10 +21,10 @@ class MysqliProvider
 
     }
 
-    public function select(string $table, array $where): array
+    public function select(string $table, array $where, bool $flag = false): array
     {
         $whereString = $this->configWhere($where);
-        return $this->exq("SELECT * FROM {$table} WHERE {$whereString}");
+        return $this->exq("SELECT * FROM {$table} WHERE {$whereString}", $flag);
     }
 
     public function insert(string $table, array $fields): array
