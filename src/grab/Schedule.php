@@ -35,6 +35,11 @@ class Schedule implements \Lichi\Grab\Schedule
         $this->optimalIndexScheduleOffset = $this->getOptimalIndexScheduleOffset();
     }
 
+    public function changeLastTime($lastTime)
+    {
+        $this->lastTime = $lastTime;
+    }
+
 
     private function sortTime(&$schedule): void
     {
