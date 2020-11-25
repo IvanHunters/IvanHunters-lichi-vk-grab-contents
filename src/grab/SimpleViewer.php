@@ -20,19 +20,20 @@ class SimpleViewer
     /**
      * @var int|mixed
      */
-    private $selectGroupId;
+    public $selectGroupId;
+    public int $offsetTimePost;
 
-    public function __construct(Client $redis, MysqliProvider $db, ApiProvider $apiProvider, Schedule $schedule)
+    public function __construct(Client $redis, MysqliProvider $db, ApiProvider $apiProvider, Schedule $schedule, string $viewTemplate)
     {
         $this->db = $db;
         $this->redis = $redis;
         $this->apiProvider = $apiProvider;
         $this->schedule = $schedule;
 
-        $this->preloader();
+        $this->preloader($viewTemplate);
     }
 
-    public function preloader(): void
+    public function preloader(string $viewTemplate): void
     {
         $this->selectGroup = isset($_GET['select'])? $_GET['select'] : die('Укажите Select');
         $groupInfo = $this->getInfoForGroup();
@@ -42,6 +43,7 @@ class SimpleViewer
         {
             $this->actionsHandler($_GET['act']);
         }
+        $this->viewTemplate($viewTemplate);
 
     }
 
@@ -127,6 +129,7 @@ class SimpleViewer
                     $scheduleOffsetTime = $this->schedule->optimalIndexScheduleOffset;
                     $offsetTimePost = $this->schedule->getUnixFor(0, $scheduleOffsetTime);
                 }
+                $this->offsetTimePost = $offsetTimePost;
                 try {
                     $this->apiProvider->wall->post(
                         $this->selectGroupId,
@@ -193,5 +196,41 @@ class SimpleViewer
             $text .= " ORDER BY {$order_by} {$order_by_type} limit 3";
 
         $_SESSION[$this->selectGroup.'_last_request'] = $text;
+    }
+
+    public function check_place($place, $value, $flag = false)
+    {
+        if(
+            isset($_SESSION[$this->selectGroupId."_".$place])
+            && (
+                (
+                    is_array($_SESSION[$this->selectGroupId."_".$place])
+                    && in_array($value, $_SESSION[$this->selectGroupId."_".$place])
+                )
+                || $_SESSION[$this->selectGroupId."_".$place] == $value)
+        )
+            if($flag)
+                echo 'selected';
+            else
+                echo 'checked';
+
+    }
+
+    private function viewTemplate(string $viewTemplate)
+    {
+        if(!isset($_SESSION[$this->selectGroupId.'_last_request']))
+        {
+            $req = "SELECT f1.*, f2.avg FROM `find_contents` f1 INNER JOIN  (SELECT owner_id, avg(likes) as avg FROM `find_contents` GROUP BY owner_id) f2 on f1.owner_id = f2.owner_id WHERE f1.likes > f2.avg and f1.status = 0 ORDER BY f1.date DESC, f1.views DESC, f1.likes DESC limit 3";
+            $notPublish = $this->db->exq($req, true)[0];
+        }else{
+            $notPublish = $this->db->exq($_SESSION[$this->selectGroupId . '_last_request'], true)[0];
+        }
+        $countNotResponse = $notPublish[0]->num_rows;
+
+        $time_post = $this->redis->get($this->selectGroupId);
+
+        $next_p = date("d-m-Y H:i", $time_post);
+
+        require_once($viewTemplate);
     }
 }
