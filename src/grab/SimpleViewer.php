@@ -37,7 +37,7 @@ class SimpleViewer
         $this->selectGroup = isset($_GET['select'])? $_GET['select'] : die('Укажите Select');
         $groupInfo = $this->getInfoForGroup();
         $this->checkReset();
-        $this->getSourceForGroup($groupInfo);
+        $this->getSourceForGroup($groupInfo, true);
         if(isset($_GET['act']))
         {
             $this->actionsHandler($_GET['act']);
