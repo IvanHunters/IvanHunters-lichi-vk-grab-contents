@@ -38,11 +38,11 @@ class Schedule implements \Lichi\Grab\Schedule
     public function changeLastTime($lastTime)
     {
         $this->lastTime = $lastTime;
+        $this->getOptimalIndexScheduleOffset();
     }
 
     public function changeSchedule($newSchedule) {
         $this->schedules = $newSchedule;
-        $this->getOptimalIndexScheduleOffset();
     }
 
 
