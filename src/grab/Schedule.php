@@ -66,7 +66,7 @@ class Schedule implements \Lichi\Grab\Schedule
         date_default_timezone_set("Europe/Volgograd");
         foreach ($this->schedules as $id=>$schedule){
             $unixTime = $this->getUnixFor(0, $id);
-            if(time() < $unixTime)
+            if($this->lastTime < $unixTime)
                 return $id;
         }
         return -1;
