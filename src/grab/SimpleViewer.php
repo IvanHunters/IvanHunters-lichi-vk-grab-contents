@@ -181,11 +181,10 @@ class SimpleViewer
         $order_by                       = @$_POST['order_by'];
         $order_by_type                  = @$_POST['order_by_type'];
 
-
         $_SESSION[$this->selectGroupId.'_order_by'] = @$_POST['order_by'];
         $_SESSION[$this->selectGroupId.'_order_by_type'] = @$_POST['order_by_type'];
-        $_SESSION[$this->selectGroupId.'_with'] = $_POST['with'];
         $_SESSION[$this->selectGroupId.'_text'] = ($_POST['text'])? $_POST['text']: "";
+        var_dump($_POST);
         $_SESSION[$this->selectGroupId.'_ownerId'] = $_POST['ownerId'];
 
         $text = "SELECT f1.*, f2.avg " .
@@ -200,11 +199,11 @@ class SimpleViewer
         if(isset($_POST['text']))
             $text .= " and f1.textPost like '%".$_POST['text']."%'";
         if(isset($_POST['ownerId']))
-            $text .= " and f1.ownerId like '".$_POST['ownerId']."'";
+            $text .= " and f1.ownerId = '".$_POST['ownerId']."'";
 
         if(isset($_POST['order_by']))
             $text .= " ORDER BY {$order_by} {$order_by_type} limit 10";
-        $_SESSION[$this->selectGroup.'_last_request'] = $text;
+        $_SESSION[$this->selectGroupId.'_last_request'] = $text;
     }
 
     public function check_place(string $place, string $value, bool $flag = false): void
@@ -243,6 +242,7 @@ class SimpleViewer
         }
 
         $scheduleOffsetTime = $this->schedule->optimalIndexScheduleOffset;
+
         if($scheduleOffsetTime === -1){
             $offsetTimePost = $this->schedule->getUnixFor(1, 0);
         }else{
