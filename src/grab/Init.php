@@ -35,7 +35,7 @@ class Init implements \Lichi\Grab\Init
         foreach ($postsInfo['items'] as $postInfo) {
             $postObject = new Post($postInfo);
             if (Validator::checkPost($postObject)) {
-                $post[] = $postObject;
+                $post[$postObject->postId] = $postObject;
             }
         }
         return $post;
