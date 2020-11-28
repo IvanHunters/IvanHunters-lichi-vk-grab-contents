@@ -40,12 +40,21 @@ class Schedule implements \Lichi\Grab\Schedule
         $this->lastTime = $lastTime;
     }
 
+    public function changeSchedule($newSchedule) {
+        $this->schedules = $newSchedule;
+    }
+
 
     private function sortTime(&$schedule): void
     {
         $sortDate = [];
         foreach ($schedule as $scheduleInfo){
-            $sortDate[$scheduleInfo] = strtotime($scheduleInfo);
+            $unixDate = strtotime($scheduleInfo);
+            if($unixDate) {
+                $sortDate[$scheduleInfo] = strtotime($scheduleInfo);
+            } else {
+                throw new RuntimeException(sprintf("Bad date: %s in array", $scheduleInfo));
+            }
         }
         asort($sortDate);
         $sortDate = array_unique($sortDate);
