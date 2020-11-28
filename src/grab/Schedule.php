@@ -42,6 +42,7 @@ class Schedule implements \Lichi\Grab\Schedule
 
     public function changeSchedule($newSchedule) {
         $this->schedules = $newSchedule;
+        $this->getOptimalIndexScheduleOffset();
     }
 
 
